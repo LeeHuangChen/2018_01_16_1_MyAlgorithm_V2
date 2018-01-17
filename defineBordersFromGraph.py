@@ -75,29 +75,6 @@ def defineBordersFromGraph(graphFile, hspIntGraphdir, borderInfodir, borderResul
 				modulefamilyinfo[proteinName].append([moduleID,start,end])
 				collapsOverlappingBorders(modulefamilyinfo[proteinName])
 
-				##testcode
-				# for protein in modulefamilyinfo.keys():
-				# 	print protein, modulefamilyinfo[protein]
-				# print "**"
-				# print [moduleID,start,end]
-				# raw_input("Press Enter to continue...")
-
-
-				# borders=modulefamilyinfo[proteinName]
-
-				# weShouldAddABorder=True
-				# for border in borders:
-				# 	#if there is a border in the module information that overlaps with the current border and it is from the same module family
-				# 	overlapped=util.overlap(border[1],border[2],start,end)>0
-				# 	if overlapped and border[0]==moduleID:
-				# 		#then replace the border with the union of the borders
-				# 		border[1]=min(border[1],start)
-				# 		border[2]=max(border[2],end)
-				# 		weShouldAddABorder=False
-
-				# if weShouldAddABorder:
-				# 	modulefamilyinfo[proteinName].append([moduleID,start,end])
-				# 	collapsOverlappingBorders(modulefamilyinfo[proteinName])
 
 	#cleanup borders that ended up developing to overlap borders
 	for protein in modulefamilyinfo.keys():
