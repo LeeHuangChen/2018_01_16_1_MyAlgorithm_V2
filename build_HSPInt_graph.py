@@ -69,6 +69,36 @@ def findOverlapIntervals(name1, name2, cutoffRatio):
                 
     return nodeNamePairs
 
+
+#looks at the four intervals provided by the two hsp (each hsp has two intervals in the form (q,s,e), (t,s,e)), and returns a list of nodeName pairs to add edges
+def findOverlapIntervalsMutual(name1, name2, cutoffRatio):
+    nodeNamePairs=[]
+
+    interval1Start=int(name1[1])
+    interval1End=int(name1[2])
+    interval2Start=int(name2[1])
+    interval2End=int(name2[2])
+
+    overlap=util.overlap(interval1Start,interval1End,interval2Start,interval2End)
+    intervalLen1=interval1End-interval1Start 
+    intervalLen2=interval2End-interval2Start
+
+    overlapRatio1=float(abs(overlap-intervalLen1))/float(intervalLen1)
+    overlapRatio2=float(abs(overlap-intervalLen2))/float(intervalLen2)
+
+    #maxOverlapRatio=max(overlapRatio1, overlapRatio2)
+
+    if(name1[0]!=name2[0]):
+        print "Error!!! ", name1, name2
+
+    #add the nodeNamePair to nodeNamePairs
+    #if maxOverlapRatio>cutoffRatio:
+    if overlapRatio1<cutoffRatio and overlapRatio2<cutoffRatio:
+        #print name1,name2
+        nodeNamePairs.append(   (name1,name2)   )
+                
+    return nodeNamePairs
+
 def addToDict(dictionary, key, append):
     if key in dictionary:
         #add the element to list and remove duplicates
@@ -132,7 +162,7 @@ def build_graph(blastInfoFilename,blastdir, hspIntGraphdir, cutoffRatio, evalueC
                 name2 = subNodeNames[j]
                 
 
-                overlapPairs=findOverlapIntervals(name1, name2, cutoffRatio)
+                overlapPairs=findOverlapIntervalsMutual(name1, name2, cutoffRatio)
                 
                 for overlapPair in overlapPairs:
                     g.add_edge(overlapPair[0],overlapPair[1])
