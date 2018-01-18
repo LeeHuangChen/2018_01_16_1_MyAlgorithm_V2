@@ -2,7 +2,7 @@
 
 #parameters
 #the overlap ratio cutoff to determine if two BLASTp hits on the same protein is considered overlapped
-cutoffRatio=.95
+cutoffRatio=.60
 evalueCutoff=1e-4
 
 

@@ -31,7 +31,7 @@ def main():
 
 
 			blastInfoPath=os.path.join(blastdir ,blastInfoFilename)
-			os.rename(blastInfoPath,blastInfoPath+".done")
+			#os.rename(blastInfoPath,blastInfoPath+".done")
 
 
 

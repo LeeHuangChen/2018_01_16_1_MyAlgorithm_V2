@@ -135,8 +135,10 @@ def build_graph(blastInfoFilename,blastdir, hspIntGraphdir, cutoffRatio, evalueC
             hsp=read_HSP(line)
             goodeval=hsp["EValue"]<evalueCutoff
             notsameprotein = (hsp["query_id"]!=hsp["target_id"])
+            lengthRatio= float(abs(hsp["query_len"]-hsp["target_len"]))/hsp["query_len"]
+            similarLength=lengthRatio<conf.cutoffRatio
+            #if goodeval and notsameprotein and similarLength:
             if goodeval and notsameprotein:
-
                 #Add the nodes (p_1,s_1,e_1) and (p_2,s_2,e_2) and create an edge between them
                 g.add_node(nodeName(hsp,"query"))
                 g.add_node(nodeName(hsp,"target"))
