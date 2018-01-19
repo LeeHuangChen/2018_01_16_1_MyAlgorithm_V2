@@ -1,3 +1,5 @@
+The input files must have the same name for each sample
+
 #############################
 # INSTALLATION INSTRUCTIONS #
 #############################
